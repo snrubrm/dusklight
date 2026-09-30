@@ -205,7 +205,6 @@ struct UserSettings {
         // access in every mod. Dawnlight read a shifted ConfigVar and abort()ed each
         // frame. Reordering within the struct keeps its size, so siblings are
         // unaffected -- but only while these stay last. Append here, never above.
-        ConfigVar<bool> showPipelineProgress;
     } video;
 
     struct {

@@ -485,6 +485,15 @@ static void LoadFromPath(const char* path) {
         j["backend.checkForModUpdates"] = j["backend.checkForUpdates"];
     }
 
+    // This fork's video.showPipelineProgress became upstream's restored
+    // backend.showPipelineCompilation
+    if (const auto it = j.find("video.showPipelineProgress"); it != j.end()) {
+        if (!j.contains("backend.showPipelineCompilation")) {
+            j["backend.showPipelineCompilation"] = *it;
+        }
+        j.erase(it);
+    }
+
     UnregisteredConfigVars.clear();
 
     for (const auto& el : j.items()) {
